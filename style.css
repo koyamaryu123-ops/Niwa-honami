@@ -1,49 +1,61 @@
 /* ベース設定 */
 :root {
-    --main-color: #8e7d76; /* モカブラウン */
+    --main-color: #5d4e46; /* 文字色を少し濃くして写真負けしないように */
     --accent-color: #d4af37; /* シャンパンゴールド */
-    --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-    --glass-bg: rgba(255, 255, 255, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.8);
+    --glass-bg: rgba(255, 255, 255, 0.75); /* カードの背景を少し濃い白に */
+    --glass-border: rgba(255, 255, 255, 0.9);
 }
 
 body {
     margin: 0;
-    font-family: 'Cormorant Garamond', serif; /* 英語はセリフ体 */
-    background: #fdfbfb;
+    font-family: 'Cormorant Garamond', serif;
     color: var(--main-color);
     line-height: 1.8;
-    overflow-x: hidden; /* 横スクロール禁止 */
+    overflow-x: hidden;
+    /* body自体の背景は削除（下のbg-decorationで制御するため） */
 }
 
-/* 日本語部分のフォント指定 */
+/* ★ここが変更点：背景を清泉女子大学の写真にする */
+.bg-decoration {
+    position: fixed; /* スクロールしても背景は動かない */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* 一番後ろに配置 */
+    
+    /* 背景画像の設定 */
+    background-image: url('seisen.jpg'); /* 保存した画像ファイル名 */
+    background-size: cover; /* 画面いっぱいに広げる */
+    background-position: center; /* 真ん中を表示 */
+    background-repeat: no-repeat;
+}
+
+/* 写真の上に白いフィルターを重ねて、上品＆文字を見やすくする */
+.bg-decoration::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6); /* 白の半透明 (0.6で透け具合調整) */
+    backdrop-filter: blur(3px); /* 少しだけぼかして幻想的に */
+    -webkit-backdrop-filter: blur(3px);
+}
+
+/* 日本語部分のフォント指定（ここはそのまま） */
 .jp-text, h2, h3, p {
-    font-family: 'Shippori Mincho', serif; /* 日本語はしっぽり明朝 */
+    font-family: 'Shippori Mincho', serif;
 }
 
-/* リンク */
+/* リンク（そのまま） */
 a {
     text-decoration: none;
     color: var(--main-color);
     transition: 0.3s;
 }
-
-/* 背景のふわふわ装飾 */
-.bg-decoration {
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,240,245,0.8) 0%, rgba(255,255,255,0) 70%);
-    z-index: -1;
-    animation: rotate 20s linear infinite;
-}
-
-@keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+/* ...（以下、header以降のコードは前のままでOKです）... */
 
 /* ヘッダー */
 header {
