@@ -328,8 +328,28 @@ footer {
     }
     
     /* スマホ対応エリアの中のheader設定 */
-    header {
-        padding: 15px 20px; /* 左右の余白を少し狭める */
-        width: 100%;
+    /* スマホ対応（ファイルの一番下にあります） */
+@media (max-width: 768px) {
+    
+    /* ヘッダーをスマホでも強制的に固定する設定 */
+        header {
+            position: fixed !important; /* !importantで強制力を強くする */
+            top: 0;    
+            left: 0;
+            width: 100%; /* 画面の端から端まで */
+            padding: 15px 20px; /* 余白の調整 */
+            background: rgba(255, 255, 255, 0.85); /* スマホは見やすいように少し白を濃く */
+            backdrop-filter: blur(15px); /* ぼかしも強めに */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* 以下は他の修正（ズレ防止） */
+        .profile-layout {
+            flex-direction: column;
+        }
+    
+        .hero h1 {
+            font-size: 50px;
+        }
     }
 }
