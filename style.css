@@ -327,8 +327,9 @@ footer {
         font-size: 50px;
     }
     
+    /* スマホ対応エリアの中のheader設定 */
     header {
-        padding: 20px;
-        width: calc(100% - 40px);
+        padding: 15px 20px; /* 左右の余白を少し狭める */
+        width: 100%;
     }
 }
